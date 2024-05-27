@@ -14,7 +14,7 @@ public class SimpleServiceApplication {
     }
 
     @Bean
-    UserService userService(ApplicationEventPublisher applicationEventPublisher) {
-        return new UserService(applicationEventPublisher);
+    UserService userService() {
+        return new UserService();
     }
 }

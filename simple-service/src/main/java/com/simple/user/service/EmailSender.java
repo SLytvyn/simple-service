@@ -1,4 +1,4 @@
-package com.simple.user;
+package com.simple.user.service;
 
 import org.springframework.web.client.RestTemplate;
 
