@@ -1,5 +1,6 @@
 package com.simple.user.service;
 
+import com.simple.user.EmailSender;
 import com.simple.user.model.UserCreatedEvent;
 import com.simple.user.model.UserModel;
 import com.simple.user.repository.InMemoryUserRepository;
@@ -8,6 +9,7 @@ import com.simple.user.repository.SqlUserRepository;
 import com.simple.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.scheduling.annotation.Async;
 
 import java.util.function.Supplier;
 
@@ -18,6 +20,7 @@ public class UserService {
     private final UserRepository inMemoryUserRepository = new InMemoryUserRepository();
     private final UserRepository remouteUserRepository = new MeteredRemouteServiceUserRepository();
     private final Supplier<String> idGenerator = () -> String.valueOf(System.currentTimeMillis());
+    private final EmailSender emailSender = new EmailSender();
 
     private final ApplicationEventPublisher applicationEventPublisher;
 
@@ -29,6 +32,7 @@ public class UserService {
         var id = idGenerator.get();
         var userModel = new UserModel(id, name, email);
         applicationEventPublisher.publishEvent(new UserCreatedEvent(this, userModel));
+        sendAsync(userModel);
         getUserRepositoryById(id).saveUser(userModel);
         return userModel;
     }
@@ -40,6 +44,11 @@ public class UserService {
             case '2' -> inMemoryUserRepository;
             default -> remouteUserRepository;
         };
+    }
+
+    @Async
+    private void sendAsync(UserModel userModel) {
+        emailSender.sendEmail(userModel.getEmail(), "User created: " + userModel.getName());
     }
 
 }
