@@ -10,12 +10,12 @@ public class InMemoryUserRepository implements UserRepository {
     private final Map<String, UserModel> users = new HashMap<>();
 
     @Override
-    public UserModel getUserById(String id) {
-        return users.get(id);
+    public UserModel getByEmail(String email) {
+        return users.get(email);
     }
 
     @Override
     public void saveUser(UserModel userModel) {
-        users.put(userModel.getId(), userModel);
+        users.put(userModel.getEmail(), userModel);
     }
 }

@@ -1,11 +1,9 @@
 package com.simple.user.service;
 
-import org.springframework.web.client.RestTemplate;
-
 public class EmailSender {
 
-    private final RestTemplate restTemplate = new RestTemplate();
     public void sendEmail(String email, String message) {
-        restTemplate.postForEntity("http://localhost:8080/sendEmail/" + email, message, String.class);
+        System.out.printf("Thread: %s%n", Thread.currentThread().getName());
+        System.out.printf("Sending mail message: %s to user: %s%n", message, email);
     }
 }

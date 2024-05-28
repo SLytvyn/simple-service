@@ -15,12 +15,12 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/users/{id}")
-    public UserModel getUserById(@PathVariable String id) {
-        return userService.getUserById(id);
+    @GetMapping("/users/{email}")
+    public UserModel getUserByEmail(@PathVariable String email) {
+        return userService.getUserByEmail(email);
     }
 
-    @PostMapping("/user")
+    @PostMapping("/users")
     public UserModel create(@RequestParam("name") String name, @RequestParam("email") String email) {
         return userService.createUser(name, email);
     }

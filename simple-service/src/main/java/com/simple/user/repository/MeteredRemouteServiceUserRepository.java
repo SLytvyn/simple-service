@@ -7,12 +7,12 @@ import lombok.RequiredArgsConstructor;
 public class MeteredRemouteServiceUserRepository extends RemouteServiceUserRepository {
 
     @Override
-    public UserModel getUserById(String id) {
+    public UserModel getByEmail(String email) {
         var before = System.currentTimeMillis();
-        var userById = super.getUserById(id);
+        var userByEmail = super.getByEmail(email);
         var after = System.currentTimeMillis();
         System.out.println("Time to get: " + (after - before));
-        return userById;
+        return userByEmail;
     }
 
     @Override

@@ -13,8 +13,8 @@ public class RemouteServiceUserRepository implements UserRepository {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public UserModel getUserById(String id) {
-        return restTemplate.execute("http://user-service/users/" + id, HttpMethod.GET, null, response -> {
+    public UserModel getByEmail(String email) {
+        return restTemplate.execute("http://user-service/users/" + email, HttpMethod.GET, null, response -> {
             if (response.getStatusCode().is2xxSuccessful()) {
                 return objectMapper.readValue(response.getBody(), UserModel.class);
             } else {

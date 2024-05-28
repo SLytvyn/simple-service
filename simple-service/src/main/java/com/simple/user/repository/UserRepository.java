@@ -4,7 +4,7 @@ import com.simple.user.model.UserModel;
 
 public interface UserRepository {
 
-    UserModel getUserById(String id);
+    UserModel getByEmail(String email);
 
     void saveUser(UserModel userModel);
 }
