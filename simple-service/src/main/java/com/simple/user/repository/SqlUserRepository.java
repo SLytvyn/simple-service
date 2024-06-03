@@ -5,9 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 @RequiredArgsConstructor
-public class SqlUserRepository implements UserRepository {
+public class SqlUserRepository implements UserReposetory {
 
-    private final JdbcTemplate jdbcTemplate = new JdbcTemplate();
+    private static final JdbcTemplate jdbcTemplate = new JdbcTemplate();
 
     @Override
     public UserModel getByEmail(String email) {

@@ -5,7 +5,7 @@ import com.simple.user.model.UserModel;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryUserRepository implements UserRepository {
+public class InMemoryUserRepository implements UserReposetory {
 
     private final Map<String, UserModel> users = new HashMap<>();
 

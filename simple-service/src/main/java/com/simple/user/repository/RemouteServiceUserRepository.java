@@ -7,14 +7,14 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
 
 @RequiredArgsConstructor
-public class RemouteServiceUserRepository implements UserRepository {
+public class RemouteServiceUserRepository implements UserReposetory {
 
-    private final RestTemplate restTemplate = new RestTemplate();
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private volatile RestTemplate restTemplate = new RestTemplate();
+    private volatile ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public UserModel getByEmail(String email) {
-        return restTemplate.execute("http://user-service/users/" + email, HttpMethod.GET, null, response -> {
+        return restTemplate.execute(System.getProperty("UserServiceHost") + "/users/" + email, HttpMethod.GET, null, response -> {
             if (response.getStatusCode().is2xxSuccessful()) {
                 return objectMapper.readValue(response.getBody(), UserModel.class);
             } else {
