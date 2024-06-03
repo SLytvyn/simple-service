@@ -1,6 +1,6 @@
 package com.simple.user.repository;
 
-import com.simple.user.model.UserModel;
+import com.simple.user.web.UserModel;
 
 import java.util.HashMap;
 import java.util.Map;

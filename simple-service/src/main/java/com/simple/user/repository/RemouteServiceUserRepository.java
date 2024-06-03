@@ -1,7 +1,7 @@
 package com.simple.user.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.simple.user.model.UserModel;
+import com.simple.user.web.UserModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;

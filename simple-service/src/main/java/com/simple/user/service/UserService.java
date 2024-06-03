@@ -1,6 +1,6 @@
 package com.simple.user.service;
 
-import com.simple.user.model.UserModel;
+import com.simple.user.web.UserModel;
 import com.simple.user.repository.InMemoryUserRepository;
 import com.simple.user.repository.MeteredRemouteServiceUserRepository;
 import com.simple.user.repository.SqlUserRepository;

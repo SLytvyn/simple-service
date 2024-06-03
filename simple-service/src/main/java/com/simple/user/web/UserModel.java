@@ -1,4 +1,4 @@
-package com.simple.user.model;
+package com.simple.user.web;
 
 
 import lombok.AllArgsConstructor;
